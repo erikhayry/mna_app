@@ -1,0 +1,10 @@
+{
+    "me.rahul.plugins.audio-picker": {
+        "source": {
+            "type": "local",
+            "path": "me.rahul.plugins.audio-picker"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
