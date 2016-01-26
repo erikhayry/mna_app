@@ -40,7 +40,7 @@
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		772240165B324C52BC73F89E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1A680E9F554F309B7A8D11 /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		99FCC06886344A898A11B08F /* iOSAudioPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DD4DB5246C884C578E3EE91B /* iOSAudioPicker.m */; };
+		19CF9C33FE9D4DDEB0183931 /* iOSAudioPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6303B6B5BB4C429C5F7A3D /* iOSAudioPicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +107,8 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "mnaApp/config.xml"; sourceTree = "<group>"; };
 		8F1A680E9F554F309B7A8D11 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MediaPlayer.framework"; path = "System/Library/Frameworks/MediaPlayer.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
-		DD4DB5246C884C578E3EE91B /* iOSAudioPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "iOSAudioPicker.m"; path = "me.rahul.plugins.audio-picker/iOSAudioPicker.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		398DE8202BC74C548D89F50B /* iOSAudioPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iOSAudioPicker.h"; path = "me.rahul.plugins.audio-picker/iOSAudioPicker.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BF6303B6B5BB4C429C5F7A3D /* iOSAudioPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "iOSAudioPicker.m"; path = "me.rahul.plugins.audio-picker/iOSAudioPicker.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		95A45DF36C8B4E30AE63F4E4 /* iOSAudioPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "iOSAudioPicker.h"; path = "me.rahul.plugins.audio-picker/iOSAudioPicker.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,8 +209,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				DD4DB5246C884C578E3EE91B /* iOSAudioPicker.m */,
-				398DE8202BC74C548D89F50B /* iOSAudioPicker.h */,
+				BF6303B6B5BB4C429C5F7A3D /* iOSAudioPicker.m */,
+				95A45DF36C8B4E30AE63F4E4 /* iOSAudioPicker.h */,
 			);
 			name = Plugins;
 			path = "mnaApp/Plugins";
@@ -395,7 +395,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				99FCC06886344A898A11B08F /* iOSAudioPicker.m in Sources */,
+				19CF9C33FE9D4DDEB0183931 /* iOSAudioPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

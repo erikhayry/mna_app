@@ -8,7 +8,13 @@
 - (void) getAudio:(CDVInvokedUrlCommand *)command
 {
     NSLog(@"STIGU!");
-    //let query = MPMediaQuery.songsQuery();
+    MPMediaQuery *everything = [[MPMediaQuery alloc] init];
+    NSLog(@"Logging items from a generic query...");
+    NSArray *itemsFromGenericQuery = [everything items];
+    for (MPMediaItem *song in itemsFromGenericQuery) {
+        NSString *songTitle = [song valueForProperty: MPMediaItemPropertyTitle];
+        /* Filter found songs here manually */
+    }
     callbackID = command.callbackId;
     NSString *msong = [command argumentAtIndex:0];
     NSString *iCloudItems = [command argumentAtIndex:1];
