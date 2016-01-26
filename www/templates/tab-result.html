@@ -1,0 +1,14 @@
+<ion-view view-title="Results">
+  <ion-content>
+    <div class="text-center">
+        <button ng-click="vm.getAudio()">Reload</button>         
+    </div>
+    <ion-list>
+        <ion-item ng-repeat="album in vm.result" type="item-text-wrap">
+            <p>{{album.albumTitle}}</p>
+            <p>{{album.artist}}</p>
+            <p>{{album.title}}</p>
+        </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
