@@ -1,14 +1,25 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
+    console.log('dash')
     
     function success(data){
-        alert(data)
+        console.log('success!')
+        console.log(data)
     }
-
+    function error(data){
+        console.log('error!')
+        console.log(data)
+    }
     $scope.getAudio = function(){
-        //alert(Object.keys(window.plugins.iOSAudioPicker))
-        window.plugins.iOSAudioPicker.getAudio(success,success,'true','true');
+        console.log('Get audio.')
+        window.plugins.iOSAudioPicker.getAudio(function(data){
+            console.log('callback')
+            success(data);
+        },function(data){
+            console.log('callback')
+            success(data);
+        },'true','true');
     }
 })
 

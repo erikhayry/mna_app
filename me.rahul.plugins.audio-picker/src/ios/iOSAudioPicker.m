@@ -7,26 +7,50 @@
 
 - (void) getAudio:(CDVInvokedUrlCommand *)command
 {
-    NSLog(@"STIGU!");
+    CDVPluginResult* pluginResult = nil;
+    NSString* echo = [command.arguments objectAtIndex:0];
+
     MPMediaQuery *everything = [[MPMediaQuery alloc] init];
-    NSLog(@"Logging items from a generic query...");
     NSArray *itemsFromGenericQuery = [everything items];
-    for (MPMediaItem *song in itemsFromGenericQuery) {
-        NSString *songTitle = [song valueForProperty: MPMediaItemPropertyTitle];
-        /* Filter found songs here manually */
+    
+    songsList = [[NSMutableArray alloc] init];
+    for(MPMediaItem *song in itemsFromGenericQuery)
+    {
+        NSString *title = [song valueForProperty:MPMediaItemPropertyTitle];
+        NSString *albumTitle = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
+        NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
+        
+        NSLog(@"title = %@",title);
+        NSLog(@"albumTitle = %@",albumTitle);
+        NSLog(@"artist = %@",artist);
+        
+        NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
+        if(title != nil) {
+            [songInfo setObject:title forKey:@"title"];
+        } else {
+            [songInfo setObject:@"No Title" forKey:@"title"];
+        }
+        if(albumTitle != nil) {
+            [songInfo setObject:albumTitle forKey:@"albumTitle"];
+        } else {
+            [songInfo setObject:@"No Album" forKey:@"albumTitle"];
+        }
+        if(artist !=nil) {
+            [songInfo setObject:artist forKey:@"artist"];
+        } else {
+            [songInfo setObject:@"No Artist" forKey:@"artist"];
+        }
+        [songsList addObject:songInfo];
     }
-    callbackID = command.callbackId;
-    NSString *msong = [command argumentAtIndex:0];
-    NSString *iCloudItems = [command argumentAtIndex:1];
+    int size = [itemsFromGenericQuery count];
+    NSLog(@"there are %d objects in the array", size);
 
-    MPMediaPickerController *mediaPicker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
 
-    mediaPicker.delegate = self;
-    mediaPicker.allowsPickingMultipleItems = [msong isEqualToString:@"true"];
-    mediaPicker.showsCloudItems = [iCloudItems isEqualToString:@"true"];
-    mediaPicker.prompt = NSLocalizedString (@"Add songs to play", "Prompt in media item picker");
+    
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:songsList];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
-    [self.viewController presentViewController:mediaPicker animated:YES completion:nil];
+
 
 }
 
