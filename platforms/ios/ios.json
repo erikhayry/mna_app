@@ -9,7 +9,7 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"iOSAudioPicker\"><param name=\"ios-package\" value=\"iOSAudioPicker\" /></feature>",
+                            "xml": "<feature name=\"iOSAudioInfo\"><param name=\"ios-package\" value=\"iOSAudioInfo\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -18,22 +18,22 @@
         }
     },
     "installed_plugins": {
-        "me.rahul.plugins.audio-picker": {
+        "erikportin.plugins.audio-info": {
             "PACKAGE_NAME": "com.ionicframework.mnaapp309179"
         }
     },
     "dependent_plugins": {},
     "modules": [
         {
-            "file": "plugins/me.rahul.plugins.audio-picker/www/iOSAudioPicker.js",
-            "id": "me.rahul.plugins.audio-picker.iOSAudioPicker",
-            "pluginId": "me.rahul.plugins.audio-picker",
+            "file": "plugins/erikportin.plugins.audio-info/www/iOSAudioInfo.js",
+            "id": "erikportin.plugins.audio-info.iOSAudioInfo",
+            "pluginId": "erikportin.plugins.audio-info",
             "clobbers": [
-                "window.plugins.iOSAudioPicker"
+                "window.plugins.iOSAudioInfo"
             ]
         }
     ],
     "plugin_metadata": {
-        "me.rahul.plugins.audio-picker": "0.0.8"
+        "erikportin.plugins.audio-info": "0.0.1"
     }
 }

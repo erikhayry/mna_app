@@ -1,8 +1,16 @@
 <ion-view view-title="Results">
   <ion-content>
     <div class="text-center">
-        <button ng-click="vm.getAudio()">Reload</button>         
+        <button ng-click="vm.getAudio()">Reload</button>
+        <br>         
+        <ion-spinner ng-if="vm.isLoading" icon="spiral"></ion-spinner>
     </div>
+    <ion-item type="item-text-wrap">
+        <p>{{vm.track.albumTitle}}</p>
+        <p>{{vm.track.artist}}</p>
+        <p>{{vm.track.title}}</p>
+        <img src="data:image/png;base64,{{vm.track.image}}" alt="" style="max-width:100%;">
+    </ion-item>   
     <ion-list>
         <ion-item ng-repeat="album in vm.result" type="item-text-wrap">
             <p>{{album.albumTitle}}</p>

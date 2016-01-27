@@ -1,18 +1,18 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/me.rahul.plugins.audio-picker/www/iOSAudioPicker.js",
-        "id": "me.rahul.plugins.audio-picker.iOSAudioPicker",
-        "pluginId": "me.rahul.plugins.audio-picker",
+        "file": "plugins/erikportin.plugins.audio-info/www/iOSAudioInfo.js",
+        "id": "erikportin.plugins.audio-info.iOSAudioInfo",
+        "pluginId": "erikportin.plugins.audio-info",
         "clobbers": [
-            "window.plugins.iOSAudioPicker"
+            "window.plugins.iOSAudioInfo"
         ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "me.rahul.plugins.audio-picker": "0.0.8"
+    "erikportin.plugins.audio-info": "0.0.1"
 }
 // BOTTOM OF METADATA
 });

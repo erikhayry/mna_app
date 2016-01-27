@@ -1,8 +1,9 @@
 {
-    "me.rahul.plugins.audio-picker": {
+    "erikportin.plugins.audio-info": {
         "source": {
-            "type": "local",
-            "path": "me.rahul.plugins.audio-picker"
+            "type": "git",
+            "url": "https://github.com/erikportin/ios-audio-info.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}

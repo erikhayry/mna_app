@@ -7,7 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "me.rahul.plugins.audio-picker": {
+        "erikportin.plugins.audio-info": {
             "PACKAGE_NAME": "com.ionicframework.mnaapp309179"
         }
     },
