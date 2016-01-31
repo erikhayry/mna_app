@@ -5,12 +5,14 @@
         <br>         
         <ion-spinner ng-if="vm.isLoading" icon="spiral"></ion-spinner>
     </div>
+
     <ion-item type="item-text-wrap">
-        <p>{{vm.track.albumTitle}}</p>
-        <p>{{vm.track.artist}}</p>
-        <p>{{vm.track.title}}</p>
-        <img src="data:image/png;base64,{{vm.track.image}}" alt="" style="max-width:100%;">
-    </ion-item>   
+        <p>{{vm.album.albumTitle}}</p>
+        <p>{{vm.album.artist}}</p>
+        <p>{{vm.album.title}}</p>
+        <img src="data:image/png;base64,{{vm.album.image}}" alt="" style="max-width:100%;">
+    </ion-item>  
+
     <ion-list>
         <ion-item ng-repeat="album in vm.result" type="item-text-wrap">
             <p>{{album.albumTitle}}</p>

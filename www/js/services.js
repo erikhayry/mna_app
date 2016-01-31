@@ -1,19 +1,37 @@
 angular.module('starter.services', [])
 
-.factory('DataService', function($q) {
+.factory('DataService', function($q, $http) {
+  function _getgetPopularAlbums(data){
+      return data;
+  }  
+        
   return {
     getPopularAlbums: function(musicData) {
       return musicData;
     },
-    getPopularAlbumsFakeData: function(){
-        return $q(function(resolve, reject) {
-            setTimeout(function() {
-                resolve([
-                    {artist: "Son of Raw", title: "A Black Man In Space (Sax Remix)", albumTitle: "A Black Man In Space - EP"},
-                    {artist: "Johnny Cash", title: "A Boy Named Sue (Live)", albumTitle: "At San Quentin"}
-                ]);
-            }, 1000);
-        })
+    getPopularAlbumsMock: function(){
+        var _deferred = $q.defer();
+
+        $http.get('mock_data/tracks.json').
+            success(function(data, status, headers, config) {
+                _deferred.resolve(_getgetPopularAlbums(data))
+            }).
+            error(function(data, status, headers, config) {
+                _deferred.reject('Unable to get data')
+            });
+            
+        return _deferred.promise;    
+    },
+    getAlbumMock: function(id){
+        var _deferred = $q.defer();
+        $http.get('mock_data/3554566140474577000.json').
+            success(function(data, status, headers, config) {
+                _deferred.resolve(data)
+            }).
+            error(function(data, status, headers, config) {
+                _deferred.reject('Unable to get data')
+            });
+        return _deferred.promise;               
     }
   };
 });

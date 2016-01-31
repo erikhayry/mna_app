@@ -6,17 +6,29 @@ angular.module('starter.controllers', [])
     vm.track = {};
     vm.error = '';
     vm.isLoading = true;
+    
+    $scope.safeApply = function(fn) {
+        var phase = this.$root.$$phase;
+        if(phase == '$apply' || phase == '$digest') {
+            if(fn && (typeof(fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
         
     function success(data){
-        console.log('success!', data)
+        console.log('success!')
         console.timeEnd('getAudio');
-        $scope.$apply(function(){
+        $scope.safeApply(function(){
             vm.result = DataService.getPopularAlbums(data)
             vm.isLoading = false;
             console.log(vm.result[0].trackId)
-            getTrack(vm.result[0].trackId);
+            getTrack(vm.result[2].trackId);
         })
     }
+    
     function error(error){
         console.error(error)
         console.timeEnd('getAudio');        
@@ -29,32 +41,40 @@ angular.module('starter.controllers', [])
     
     function getTrack(id){
         console.log('Try getting track', id)
-        vm.isLoading = true;        
-        window.plugins.iOSAudioInfo.getTrack(function(data){
-            $scope.$apply(function(){
-                vm.error = error;
-                vm.track = data[0];
+        vm.isLoading = true;     
+        if(window.plugins && window.plugins.iOSAudioInfo){   
+            window.plugins.iOSAudioInfo.getTrack(function(data){
+                $scope.safeApply(function(){
+                    vm.error = '';
+                    vm.album = data[0];
+                    vm.isLoading = false;
+                })
+            }, error, id);
+        }
+        else {
+            console.log('Get Mock Album')
+            vm.isLoading = true;
+            DataService.getAlbumMock(id).then(function(data){
+                vm.error = '';
+                vm.album = data[0];
                 vm.isLoading = false;
             })
-        }, error, id); 
+        }             
     }
     
     vm.getAudio = function(){
         console.log('Try getting Audio')
+        vm.isLoading = true;
+        vm.error = '';
+        vm.result = [];
+        console.time('getAudio');
         if(window.plugins && window.plugins.iOSAudioInfo){
             console.log('Get Audio')
-            console.time('getAudio');
-            vm.isLoading = true;
-            vm.error = '';
-            vm.result = [];
             window.plugins.iOSAudioInfo.getTracks(success, error);       
         }
         else {
-            vm.isLoading = true;
-            DataService.getPopularAlbumsFakeData().then(function(data){
-                vm.isLoading = false;
-                vm.result = data;
-            })
+            console.log('Get Mock Audio')
+            DataService.getPopularAlbumsMock().then(success, error)
         } 
     }
    

@@ -8,13 +8,14 @@ angular.module('starter.controllers', [])
     vm.isLoading = true;
         
     function success(data){
-        console.log('success!', data)
+        console.log('success!')
+
         console.timeEnd('getAudio');
         $scope.$apply(function(){
             vm.result = DataService.getPopularAlbums(data)
             vm.isLoading = false;
             console.log(vm.result[0].trackId)
-            getTrack(vm.result[0].trackId);
+            getTrack(vm.result[2].trackId);
         })
     }
     function error(error){
@@ -34,6 +35,7 @@ angular.module('starter.controllers', [])
             $scope.$apply(function(){
                 vm.error = error;
                 vm.track = data[0];
+                console.log(JSON.stringify(data))
                 vm.isLoading = false;
             })
         }, error, id); 
