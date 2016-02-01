@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
+angular.module('mna', ['ionic', 'mna.controllers', 'mna.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,39 +29,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.result', {
-    url: '/result',
-    views: {
-      'tab-result': {
-        templateUrl: 'templates/tab-result.html',
+    .state('result', {
+        url: '/',
+        templateUrl: 'templates/result.html',
         controller: 'ResultCtrl',
-        controllerAs: 'vm'
-      }
-    }
-  })
-
-  .state('tab.preferences', {
-      url: '/preferences',
-      views: {
-        'tab-preferences': {
-          templateUrl: 'templates/tab-preferences.html',
-          controller: 'PreferencesCtrl',
-          controllerAs: 'vm'
-        }
-      }
+        controllerAs: 'vm' 
     })
-    
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/result');
+  $urlRouterProvider.otherwise('/result');
 
 });
