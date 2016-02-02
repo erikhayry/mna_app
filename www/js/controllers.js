@@ -1,4 +1,4 @@
-angular.module('mna.controllers', [])
+angular.module('mna')
 
 .controller('ResultCtrl', function($scope, $ionicPlatform, $timeout, DataService) {
     var vm = this,

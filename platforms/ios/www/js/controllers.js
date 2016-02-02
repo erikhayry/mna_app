@@ -1,72 +1,50 @@
-angular.module('starter.controllers', [])
+angular.module('mna.controllers', [])
 
-.controller('ResultCtrl', function($scope, $ionicPlatform, DataService) {
-    var vm = this;
-    vm.result = [];
-    vm.track = {};
+.controller('ResultCtrl', function($scope, $ionicPlatform, $timeout, DataService) {
+    var vm = this,
+        _isDevice = false;        
+    vm.album = null;
     vm.error = '';
     vm.isLoading = true;
-        
+           
     function success(data){
-        console.log('success!')
+        console.log('success!', data)
+        console.timeEnd('getNextAlbum');
 
-        console.timeEnd('getAudio');
-        $scope.$apply(function(){
-            vm.result = DataService.getPopularAlbums(data)
-            vm.isLoading = false;
-            console.log(vm.result[0].trackId)
-            getTrack(vm.result[2].trackId);
-        })
+        vm.album = data;
+        vm.error = '';
+        vm.isLoading = false;
+
     }
+    
     function error(error){
         console.error(error)
-        console.timeEnd('getAudio');        
-        $scope.$apply(function(){
-            vm.error = error;
-            vm.result = [];
-            vm.isLoading = false;
-        })
+        console.timeEnd('getNextAlbum');        
+
+        vm.album = null;
+        vm.error = error;
+        vm.isLoading = false;
+       
     }
-    
-    function getTrack(id){
-        console.log('Try getting track', id)
-        vm.isLoading = true;        
-        window.plugins.iOSAudioInfo.getTrack(function(data){
-            $scope.$apply(function(){
-                vm.error = error;
-                vm.track = data[0];
-                console.log(JSON.stringify(data))
-                vm.isLoading = false;
-            })
-        }, error, id); 
-    }
-    
-    vm.getAudio = function(){
-        console.log('Try getting Audio')
-        if(window.plugins && window.plugins.iOSAudioInfo){
-            console.log('Get Audio')
-            console.time('getAudio');
-            vm.isLoading = true;
-            vm.error = '';
-            vm.result = [];
-            window.plugins.iOSAudioInfo.getTracks(success, error);       
-        }
-        else {
-            vm.isLoading = true;
-            DataService.getPopularAlbumsFakeData().then(function(data){
-                vm.isLoading = false;
-                vm.result = data;
-            })
-        } 
+       
+    vm.getNextAlbum = function(){
+        console.log('Try getting Album')
+        console.time('getNextAlbum');
+        vm.isLoading = true;
+        vm.error = '';
+        vm.album = null;
+        DataService.getNextAlbum().then(success, error)       
     }
    
     //init       
     document.addEventListener('deviceready', function () {
+        _isDevice = true;
         vm.getAudio();
     }, false);
-})
-
-.controller('PreferencesCtrl', function() {
-    var vm = this;
-    vm.preferences = {};
+    
+    $timeout(function(){
+        if(!_isDevice){
+            vm.getNextAlbum();
+        }
+    }, 2000)  
 })

@@ -1,5 +1,4 @@
-angular.module('mna.services', [])
-
+angular.module('mna')
 .factory('DataService', function($q, $http) {
     var _tracks = [],
         _sortedAlbums = [],
