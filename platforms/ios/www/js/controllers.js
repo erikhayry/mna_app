@@ -1,6 +1,5 @@
-angular.module('mna.controllers', [])
-
-.controller('ResultCtrl', function($scope, $ionicPlatform, $timeout, DataService) {
+angular.module('mna')
+    .controller('ResultCtrl', function($scope, $ionicPlatform, $timeout, Albums) {
     var vm = this,
         _isDevice = false;        
     vm.album = null;
@@ -33,13 +32,13 @@ angular.module('mna.controllers', [])
         vm.isLoading = true;
         vm.error = '';
         vm.album = null;
-        DataService.getNextAlbum().then(success, error)       
-    }
+        Albums.getNextAlbum().then(success, error)       
+    };
    
     //init       
     document.addEventListener('deviceready', function () {
         _isDevice = true;
-        vm.getAudio();
+        vm.getNextAlbum();
     }, false);
     
     $timeout(function(){

@@ -6,7 +6,6 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('mna', ['ionic', 'ngCordova'])
-
     .run(function ($ionicPlatform) {
         console.log('run')
         $ionicPlatform.ready(function () {
@@ -40,6 +39,6 @@ angular.module('mna', ['ionic', 'ngCordova'])
             });
 
   // if none of the above states are matched, use this as the fal      lback
-  $urlRouterProvider.otherwise('/res    ult');
+  $urlRouterProvider.otherwise('/');
 
 });

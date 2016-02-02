@@ -1,0 +1,13 @@
+<ion-view view-title="Results">
+  <ion-content>
+    <ion-item type="item-text-wrap" ng-if="vm.album">
+        <img ng-src="data:image/png;base64,{{vm.album.image}}">
+        <p>{{vm.album.albumTitle}}</p>
+        <p>{{vm.album.artist}}</p>
+        <p>{{vm.album.title}}</p>
+    </ion-item> 
+    <br>
+    <div class="text-center">
+        <button class="btn btn-block" ng-click="vm.getNextAlbum()">Next</button>
+    </div>
+  </ion-content>
