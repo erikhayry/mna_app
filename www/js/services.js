@@ -1,6 +1,4 @@
-angular.module('mna.services', [])
-
-.factory('DataService', function($q, $http) {
+angular.module('mna').factory('DataService', function($q, $http) {
     var _tracks = [],
         _sortedAlbums = [],
         _currentAlbumIndex = 0;
@@ -103,6 +101,9 @@ angular.module('mna.services', [])
   
   
   return {
+      greet:  function(){
+          return 'Test'
+      },
     getNextAlbum: _getNextAlbum,
     
     
