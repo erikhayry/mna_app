@@ -1,10 +1,9 @@
 angular.module('mna')
-.factory('DataService', function($q, $http) {
+    .factory('DataService', function($q, $http) {
     var _tracks = [],
         _sortedAlbums = [],
         _currentAlbumIndex = 0;
-        
-        
+           
     function _getAlbumData(trackData){
         var _deferred = $q.defer();
         console.log('Get Album Data', trackData.data)
@@ -102,6 +101,9 @@ angular.module('mna')
   
   
   return {
+      greet:  function(){
+          return 'Test'
+      },
     getNextAlbum: _getNextAlbum,
     
     
