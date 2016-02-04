@@ -5,6 +5,7 @@ module.exports = function(config) {
     files: [
       '../www/lib/angular/angular.js',
       '../www/lib/angular-mocks/angular-mocks.js',
+      '../www/lib/ng-lodash/build/ng-lodash.min.js',
       '../test/app.js',
       '../www/js/services/AudioInfo.mock.js',
       '../www/js/services/Albums.js',
