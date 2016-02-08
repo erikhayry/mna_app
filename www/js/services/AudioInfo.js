@@ -1,16 +1,14 @@
 angular.module('mna')
-    .factory('AudioInfo', function($q, $http) {
-    var _currentAlbumId = '3554566140474577000';
-           
-    function _getTrack(trackData){
-        console.log('Get Track', trackData[0].trackId)
+    .factory('AudioInfo', function($q, $http) {           
+    function _getTrack(trackId){
+        console.log('Get Track', trackId)
         var _deferred = $q.defer();
                 
         window.plugins.iOSAudioInfo.getTrack(function(track){
-            _deferred.resolve(track);
-        }, function(){
-            _deferred.reject();
-        }, trackData[0].trackId)
+            _deferred.resolve(track[0]);
+        }, function(error){
+            _deferred.reject(error);
+        }, trackId)
            
         return _deferred.promise; 
     }    
@@ -21,8 +19,8 @@ angular.module('mna')
                 
         window.plugins.iOSAudioInfo.getTracks(function(tracks){
             _deferred.resolve(tracks);
-        }, function(){
-            _deferred.reject();
+        }, function(error){
+            _deferred.reject(error);
         })
            
         return _deferred.promise; 

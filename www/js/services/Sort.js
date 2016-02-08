@@ -3,11 +3,8 @@ angular.module('mna')
 
     function _sortToAlbums(tracks){
         console.log('_sortToAlbums')
-
-        return lodash.chain(tracks).groupBy('albumId').sortBy(function(a,b){
-            console.log(a)
-            console.log(b)
-            return a && b ? b.length - a.length : 0
+        return lodash.chain(tracks).groupBy('albumId').sortBy(function(a) { 
+            return -a.length; 
         }).value()
     }
   

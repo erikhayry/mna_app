@@ -1,0 +1,54 @@
+<div class="modal">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">Settings</h1>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <h2>Ignore List</h2>
+            <div class="list">
+                <div class="item item-button-right">
+                    Album <i>by</i> Artist 
+                    <button class="button button-clear button-assertive">
+                        <i class="icon ion-ios-minus"></i>
+                    </button>
+                </div>
+                <div class="item item-button-right">
+                    Album 2 <i>by</i> Artist 2
+                    <button class="button button-clear button-assertive">
+                        <i class="icon ion-ios-minus"></i>
+                    </button>
+                </div>
+                <div class="item item-button-right">
+                    Album 3 <i>by</i> Artist 3
+                    <button class="button button-clear button-assertive">
+                        <i class="icon ion-ios-minus"></i>
+                    </button>
+                </div>                
+            </div> 
+            <h2>Preferences</h2>
+            <ul class="list">
+                <li class="item item-toggle">
+                    Consider star ratings
+                    <label class="toggle toggle-postive">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                    </label>
+                </li>
+                <li class="item item-toggle">
+                    Another setting
+                    <label class="toggle toggle-postive">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                    </label>
+                </li>                
+             </ul>           
+            <button class="button button-block" ng-click="vm.hideSettings()">
+                Close
+            </button>
+        </ion-content>
+    </ion-modal-view>
+</div>

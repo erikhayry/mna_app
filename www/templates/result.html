@@ -1,13 +1,26 @@
 <ion-view view-title="Results">
-  <ion-content>
-    <ion-item type="item-text-wrap" ng-if="vm.album">
-        <img ng-src="data:image/png;base64,{{vm.album.image}}">
-        <p>{{vm.album.albumTitle}}</p>
-        <p>{{vm.album.artist}}</p>
-        <p>{{vm.album.title}}</p>
-    </ion-item> 
-    <br>
-    <div class="text-center">
-        <button class="btn btn-block" ng-click="vm.getNextAlbum()">Next</button>
-    </div>
-  </ion-content>
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button icon ion-gear-a" ng-click="vm.showSettings($event)"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="padding-vertical">
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="vm.getNextAlbum(true)">
+        </ion-refresher>
+
+        <div type="item-text-wrap" ng-if="vm.error" class="text-center">
+            <p>{{vm.error}}</p>
+        </div>
+
+        <div type="item-text-wrap" ng-if="vm.album" class="text-center">
+            <img ng-src="data:image/png;base64,{{vm.album.image}}">
+            <h2>{{vm.album.title}}</h2>
+            <h3>{{vm.album.artist}}</p>
+        </div> 
+    </ion-content>
+    <ion-footer-bar class="bar-light row">
+        <button class="button col" ng-click="vm.getNextAlbum()">Next</button>
+    </ion-footer-bar>
+</ion-view>
