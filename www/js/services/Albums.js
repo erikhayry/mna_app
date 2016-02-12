@@ -6,14 +6,14 @@ angular.module('mna')
                      
         function _getAlbum(albumsSorted){
             console.log('_getAlbum')
-            console.log(albumsSorted)
+            //console.table(albumsSorted)
             _currentAlbumIndex++;
             return AudioInfo.getTrack(albumsSorted[_currentAlbumIndex][0].trackId); 
         }    
             
         function _sortToAlbums(trackData){
             console.log('_sortToAlbums')
-            console.log(trackData)
+            //console.table(trackData)
             return $q.when(Sort.sortToAlbums(trackData))     
         }
                     

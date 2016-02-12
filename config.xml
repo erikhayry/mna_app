@@ -48,4 +48,5 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <plugin name="erikportin.plugins.audio-info" spec="https://github.com/erikportin/ios-audio-info.git" />
+    <plugin name="cordova-sqlite-storage" spec="https://github.com/litehelpers/Cordova-sqlite-storage" />
 </widget>
