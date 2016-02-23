@@ -1,15 +1,9 @@
 angular.module('mna')
-    .controller('ResultCtrl', function($scope, $ionicPlatform, $ionicModal, $timeout, Albums, Settings) {
+    .controller('ResultCtrl', function($scope, $q, $ionicPlatform, $ionicModal, $timeout, Albums, Settings) {
     var vm = this,
         _isDevice = false;        
     vm.album = null;
     vm.error = '';
-    
-    Settings.getPreferences().then(function(preferences){
-        console.log(preferences)
-        vm.preferences = preferences;
-    });
-
     vm.isLoading = true;
            
     function success(data){
@@ -64,16 +58,31 @@ angular.module('mna')
 
     vm.preferenceChanged = function(){
         console.log('Preferences changed')
-        console.table(vm.preferences)
-        Settings.setPreferences(vm.preferences).then(function(preferences){
-            vm.preferences = preferences;
-        });
+        console.log(vm.preferences)
+
+        $q.all(vm.preferences.map(function(pref){
+            return Settings.setPreferences(pref.text, pref.checked ? 1 : 0)
+        })).then(function(preferences){
+            console.log(preferences)
+            vm.preferences = preferences[0].map(function(pref){
+                pref.checked = pref.checked ? true : false;
+                return pref
+            });
+
+        })    
     }
     
     //init       
     document.addEventListener('deviceready', function () {
         _isDevice = true;
         vm.getNextAlbum();
+        Settings.getPreferences().then(function(preferences){
+            console.log(preferences)
+            vm.preferences = preferences.map(function(pref){
+                pref.checked = pref.checked ? true : false;
+                return pref
+            });
+        });
     }, false);
     
     $timeout(function(){

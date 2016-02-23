@@ -3,11 +3,11 @@ angular.module('mna')
 .factory('Settings', function(Storage) {  
     var _defaultPreferences = [
         {
-            'text': 'Use ratings',
-            'checked': true,
+            'text': 'Use ratings DEF',
+            'checked': false,
         },
         {
-            'text': 'Another Pref',
+            'text': 'Another Pref DEF',
             'checked': false,
         }
    ]
@@ -24,8 +24,8 @@ angular.module('mna')
         return ;
     }
     
-    function _setPreferences (preferences){
-        return Storage.setPreferences(preferences) || _defaultPreferences;
+    function _setPreferences (key, value){
+        return Storage.setPreferences(key, value) || _defaultPreferences;
     }            
         
     return {
@@ -34,8 +34,9 @@ angular.module('mna')
         getPreferences: function(){
             return Storage.getPreferences(_defaultPreferences)
         },
-        setPreferences: function(preferences){
-            return Storage.setPreferences(preferences, _defaultPreferences)
+        setPreferences: function(key, value){
+            console.log(key, value)
+            return Storage.setPreferences(key, value)
         }
     }        
 });
