@@ -8,7 +8,7 @@ angular.module('mna')
             console.log('_getAlbum')
             //console.table(albumsSorted)
             _currentAlbumIndex++;
-            return AudioInfo.getTrack(albumsSorted[_currentAlbumIndex][0].trackId); 
+            return AudioInfo.getTrack(albumsSorted[_currentAlbumIndex][0].persistentID); 
         }    
             
         function _sortToAlbums(trackData){

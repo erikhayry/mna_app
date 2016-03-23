@@ -18,6 +18,7 @@ angular.module('mna')
         var _deferred = $q.defer();
                 
         window.plugins.iOSAudioInfo.getTracks(function(tracks){
+            console.table(tracks, ['albumTitle', 'artist', 'rating', 'playCount'])
             _deferred.resolve(tracks);
         }, function(error){
             _deferred.reject(error);

@@ -24,9 +24,9 @@
 - (void) getTrack:(CDVInvokedUrlCommand *)command
 {
     [self.commandDelegate runInBackground:^{ 
-        NSString *trackId = [command argumentAtIndex:0];
+        NSString *persistentID = [command argumentAtIndex:0];
         
-        if(trackId == nil){
+        if(persistentID == nil){
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No ID found"];
         }
         else
@@ -35,7 +35,7 @@
             MPMediaPropertyPredicate *predicate;
             MPMediaQuery *songQuery;
             
-            predicate = [MPMediaPropertyPredicate predicateWithValue: trackId forProperty:MPMediaItemPropertyPersistentID];
+            predicate = [MPMediaPropertyPredicate predicateWithValue: persistentID forProperty:MPMediaItemPropertyPersistentID];
             songQuery = [[MPMediaQuery alloc] init];
             [songQuery addFilterPredicate: predicate];
             
@@ -62,15 +62,18 @@
     NSString *albumTitle = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
     NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
     NSString *genre = [song valueForProperty:MPMediaItemPropertyGenre];
-    NSString *trackId = [song valueForProperty:MPMediaItemPropertyPersistentID];
-    NSString *albumId = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+    NSString *persistentID = [song valueForProperty:MPMediaItemPropertyPersistentID];
+    NSString *albumPersistentID = [song valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+    NSString *playCount = [song valueForProperty:MPMediaItemPropertyPlayCount];
+    NSString *rating = [song valueForProperty:MPMediaItemPropertyRating];
     
     NSLog(@"title = %@",title);
     NSLog(@"albumTitle = %@",albumTitle);
-    NSLog(@"albumId = %@",albumId);
+    NSLog(@"albumPersistentID = %@",albumPersistentID);
     NSLog(@"artist = %@",artist);
+    NSLog(@"rating = %@",rating);
+    NSLog(@"playCount = %@",playCount);
 
-    
     NSMutableDictionary *songInfo = [[NSMutableDictionary alloc] init];
     if(title != nil) {
         [songInfo setObject:title forKey:@"title"];
@@ -92,16 +95,26 @@
     } else {
         [songInfo setObject:@"No genre" forKey:@"genre"];
     }
-    if(trackId !=nil) {
-        NSLog(@"trackId = %@",trackId);
-        [songInfo setObject:[NSString stringWithFormat:@"%@", trackId] forKey:@"trackId"];
+    if(persistentID !=nil) {
+        NSLog(@"persistentID = %@",persistentID);
+        [songInfo setObject:[NSString stringWithFormat:@"%@", persistentID] forKey:@"persistentID"];
     } else {
-        [songInfo setObject:@"No trackId" forKey:@"trackId"];
+        [songInfo setObject:@"No persistentID" forKey:@"persistentID"];
     }
-    if(albumId !=nil) {
-        [songInfo setObject:[NSString stringWithFormat:@"%@", albumId] forKey:@"albumId"];
+    if(albumPersistentID !=nil) {
+        [songInfo setObject:[NSString stringWithFormat:@"%@", albumPersistentID] forKey:@"albumPersistentID"];
     } else {
-        [songInfo setObject:@"No albumId" forKey:@"albumId"];
+        [songInfo setObject:@"No albumPersistentID" forKey:@"albumPersistentID"];
+    }
+    if(playCount !=nil) {
+        [songInfo setObject:[NSString stringWithFormat:@"%@", playCount] forKey:@"playCount"];
+    } else {
+        [songInfo setObject:@"No playCount" forKey:@"playCount"];
+    }
+    if(rating !=nil) {
+        [songInfo setObject:[NSString stringWithFormat:@"%@", rating] forKey:@"rating"];
+    } else {
+        [songInfo setObject:[NSString stringWithFormat:@"%@", @"-1"] forKey:@"rating"];
     }
 
     if(addImage){
