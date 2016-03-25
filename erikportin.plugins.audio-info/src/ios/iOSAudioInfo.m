@@ -41,10 +41,8 @@
             
             if (songQuery.items.count > 0)
             {
-                songsList = [[NSMutableArray alloc] init];
                 song = [songQuery.items objectAtIndex:0];
-                [songsList addObject:[self buildSongInfo:song:YES]];
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:songsList];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self buildSongInfo:song:YES]];
             }
             else
             {
