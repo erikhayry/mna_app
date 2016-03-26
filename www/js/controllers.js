@@ -71,11 +71,28 @@ angular.module('mna')
 
         })    
     }
+
+    vm.deleteIgnoreListItem = function(id){
+        console.log("deleteIgnoreListItem", id)
+        Settings.deleteIgnoreListItem(id).then(function(ignore){
+            vm.ignore = ignore
+        });
+    }
+
+    vm.addIgnoreListItem = function(id, name){
+        Settings.addIgnoreListItem(id, name).then(function(ignore){
+            vm.ignore = ignore
+        });
+    }
     
     //init       
     document.addEventListener('deviceready', function () {
         _isDevice = true;
         vm.getNextAlbum();
+        Settings.getIgnoreList().then(function(ignore){
+            console.log(ignore)
+            vm.ignore = ignore
+        });
         Settings.getPreferences().then(function(preferences){
             console.log(preferences)
             vm.preferences = preferences.map(function(pref){

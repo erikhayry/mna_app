@@ -8,25 +8,13 @@
                 <div class="item item-divider"> 
                 Ignore List
                 </div>
-                
-                <div class="item item-button-right">
-                    Album <i>by</i> Artist 
-                    <button class="button button-clear button-assertive">
+
+                <div class="item item-button-right" ng-repeat="album in vm.ignore">
+                    {{album.name}}
+                    <button class="button button-clear button-assertive" ng-click="vm.deleteIgnoreListItem(album.id)">
                         <i class="icon ion-ios-minus"></i>
                     </button>
-                </div>
-                <div class="item item-button-right">
-                    Album 2 <i>by</i> Artist 2
-                    <button class="button button-clear button-assertive">
-                        <i class="icon ion-ios-minus"></i>
-                    </button>
-                </div>
-                <div class="item item-button-right">
-                    Album 3 <i>by</i> Artist 3
-                    <button class="button button-clear button-assertive">
-                        <i class="icon ion-ios-minus"></i>
-                    </button>
-                </div>   
+                </div> 
                                                
                 <div class="item item-divider"> 
                 Settings

@@ -13,7 +13,7 @@ angular.module('mna')
    ]
              
     function _getIgnoreList(){
-        return Storage.getIgnoreList() || [];
+        return Storage.getIgnoreList();
     }
     
     function _setIgnoreList(ignoreList){
@@ -29,13 +29,19 @@ angular.module('mna')
     }            
         
     return {
-        getIgnoreList: _getIgnoreList,
-        setIgnoreList: _setIgnoreList,
+        getIgnoreList: function(){
+            return Storage.getIgnoreList()
+        },
+        addIgnoreListItem: function(id, name){
+            return Storage.addIgnoreListItem(id, name)
+        },
+        deleteIgnoreListItem: function(id){
+            return Storage.deleteIgnoreListItem(id)
+        },
         getPreferences: function(){
             return Storage.getPreferences(_defaultPreferences)
         },
         setPreferences: function(key, value){
-            console.log(key, value)
             return Storage.setPreferences(key, value)
         }
     }        
