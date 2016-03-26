@@ -5,7 +5,6 @@ angular.module('mna')
         var _deferred = $q.defer();
                 
         window.plugins.iOSAudioInfo.getTrack(function(track){
-            console.log(track)
             _deferred.resolve(track);
         }, function(error){
             _deferred.reject(error);

@@ -12,8 +12,7 @@
         NSArray *itemsFromGenericQuery = [everything items];
         songsList = [[NSMutableArray alloc] init];
         
-        for(MPMediaItem *song in itemsFromGenericQuery)
-        {
+        for(MPMediaItem *song in itemsFromGenericQuery){
             [songsList addObject:[self buildSongInfo:song:NO]];            
         }
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:songsList];      
@@ -28,9 +27,7 @@
         
         if(persistentID == nil){
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No ID found"];
-        }
-        else
-        {
+        } else {
             MPMediaItem *song;
             MPMediaPropertyPredicate *predicate;
             MPMediaQuery *songQuery;
@@ -39,13 +36,10 @@
             songQuery = [[MPMediaQuery alloc] init];
             [songQuery addFilterPredicate: predicate];
             
-            if (songQuery.items.count > 0)
-            {
+            if (songQuery.items.count > 0){
                 song = [songQuery.items objectAtIndex:0];
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self buildSongInfo:song:YES]];
-            }
-            else
-            {
+            } else {
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"track not found"];
             }        
         }
@@ -54,7 +48,7 @@
     }];
 }
 
-- (NSMutableDictionary *)buildSongInfo :(MPMediaItem*)song :(BOOL*)addImage
+- (NSMutableDictionary *)buildSongInfo :(MPMediaItem*)song :(BOOL)addImage
 {
     NSString *title = [song valueForProperty:MPMediaItemPropertyTitle];
     NSString *albumTitle = [song valueForProperty:MPMediaItemPropertyAlbumTitle];
@@ -125,7 +119,7 @@
             artImageFound = YES;
         }
         if (artImageFound) {
-            [songInfo setObject:[imgData base64EncodedString] forKey:@"image"];
+            [songInfo setObject:[imgData base64EncodedStringWithOptions:0] forKey:@"image"];
         } else {
             [songInfo setObject:@"No Image" forKey:@"image"];
         }
